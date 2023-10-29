@@ -1,6 +1,12 @@
+import { useDispatch } from "react-redux";
 import { CDN_URL } from "../utils/constants"
+import { addItem } from "../utils/cartSlice";
 
 const ItemList = ({items})=>{
+    const dispatch = useDispatch();
+    const handleAddItem = (item)=>{
+        dispatch(addItem(item))
+    }
     return (
         <div>
             {items.map((item) =>(
@@ -8,7 +14,7 @@ const ItemList = ({items})=>{
                  className="p-2 m-2 border-b-6 text-left ">
                     <div className="flex justify-between">
                     <img src={CDN_URL+item.card.info.imageId} className="w-20 h-30"/>
-                    <button className="w-20 h-10 m-2  bg-orange-400">Add +</button>
+                    <button className="w-20 h-10 m-2  bg-orange-400" onClick={()=>handleAddItem(item)}>Add +</button>
                     </div>
                     
                     <div className="py-2">
